@@ -24,27 +24,31 @@ categories: Ansible
 #### 예 1. 파일에 특정 문자열을 추가하는 경우
 
 멱등성 보장 안됨.
+
 ```
 ---
 - hosts: dev-servers
-tasks:
-- shell: echo test >> /tmp/forbar
+  tasks:
+    - shell: echo test >> /tmp/forbar
 ```
+
 멱등성 보장되도록 수정.
+
 ```
 ---
 - hosts: dev-servers
-tasks:
-- shell: cat /tmp/forbar
-register: result
-- shell: echo test >> /tmp/foobar
-when: result.stdout.find('test') == -1
+  tasks:
+    - shell: cat /tmp/forbar
+      register: result
+
+    - shell: echo test >> /tmp/foobar
+      when: result.stdout.find('test') == -1
 ```
 
 #### 예 2. `creates` 또는 `removes`을 사용해서 멱등성 보장
 ```
 - name: install pyton-apt
-shell: apt-get install -y python-apt >> /home/x/output.log creates=/home/x/output.log
+  shell: apt-get install -y python-apt >> /home/x/output.log creates=/home/x/output.log
 ```
 
 ### 추가 참고링크
