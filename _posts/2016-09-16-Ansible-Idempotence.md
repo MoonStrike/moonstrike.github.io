@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "[Ansible] Idempotence"
 date:   2016-09-16 15:53:26 +0900
-categories: test
+categories: Ansible
 ---
 ### 기본 개념
 
