@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Ansible] Basics"
-date:   2016-09-16 15:53:26 +0900
+date:   2016-09-09 12:13:43 +0900
 categories: Ansible
 ---
 
