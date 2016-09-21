@@ -17,3 +17,5 @@ github_username:  MoonStrike
 
 # Build settings
 markdown: kramdown
+gems:
+  - jekyll-sitemap
