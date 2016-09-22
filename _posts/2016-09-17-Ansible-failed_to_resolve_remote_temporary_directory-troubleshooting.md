@@ -2,7 +2,8 @@
 layout: post
 title:  "[Ansible] failed to resolve remote temporary directory from 오류 발생 시 대처법"
 date:   2016-09-17 17:14:01 +0900
-categories: Ansible, troubleshooting
+categories: Ansible
+comments: true
 ---
 
 Ansible을 실행할 때 실행 환경에 따라, 아래와 같은 오류가 불규칙적으로 발생하는 경우가 있다.
