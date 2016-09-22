@@ -6,7 +6,7 @@ comments: true
 categories: Ansible
 ---
 
-## 기본 참고 자료
+# 기본 참고 자료
 - [deview 2014 김용환님 발표 자료](http://www.slideshare.net/deview/1a7ansible)
 - [공식 intro 자료](http://docs.ansible.com/intro.html)
 - [공식 사이트 비디오](http://www.ansible.com/resources)
@@ -15,9 +15,9 @@ categories: Ansible
 
 ----------
 
-## 공식 tutorial 요약
+# 공식 tutorial 요약
 
-### Intro
+## Intro
 - Configuration Management Tool, automates cloud provisioning, application deployment, …
 - by default, over the **SSH** protocol
 - **no agents, no daemons, no database** and no additional custom security infrastructure
@@ -28,7 +28,9 @@ categories: Ansible
 
 ----------
 
-### [Installation](http://docs.ansible.com/intro_installation.html)
+## Installation
+<http://docs.ansible.com/intro_installation.html>
+
 - SSH protocol
 - Control Machine: (Python 2.6 or above)
 - Managed Node: (Python 2.5 or above), 2.5 이하는 `python-simplejson` 설치 필요함
@@ -37,10 +39,10 @@ categories: Ansible
 - root 권한 필요없음
 - 사전 설치가 필요한 S/W 없음
 
-#### 1. Tarball 위치
-- [http://releases.ansible.com/ansible/](http://releases.ansible.com/ansible/)
+### 1. Tarball 위치
+- <http://releases.ansible.com/ansible/>
 
-#### 2. 소스 설치
+### 2. 소스 설치
 
     $ git clone git://github.com/ansible/ansible.git --recursive
     $ cd ./ansible
@@ -58,22 +60,23 @@ update할 경우는 submodules도 해야 함
     $ git submodule update --init --recursive
 
 
-#### 3. CentOS Yum으로 설치
+### 3. CentOS Yum으로 설치
 
     # install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
     $ sudo yum install ansible
 
 
-#### 4. Pip로 설치
+### 4. Pip로 설치
 
     $ sudo easy_install pip
     $ sudo pip install ansible
 
 ----------
 
-### [Getting Started](http://docs.ansible.com/intro_getting_started.html)
+## Getting Started
+<http://docs.ansible.com/intro_getting_started.html>
 
-#### 1. Remote Connection Information
+### 1. Remote Connection Information
 - native OpenSSH (1.3 or later)
 - ControlPersist 기능이 지원되지 않는 OS(RedHat, CentOS)에서는 paramiko 사용
     - [Accelerated Mode](http://docs.ansible.com/playbooks_acceleration.html) 참고
@@ -117,7 +120,9 @@ update할 경우는 submodules도 해야 함
 
 ----------
 
-### [Inventory](http://docs.ansible.com/intro_inventory.html)
+## Inventory
+<http://docs.ansible.com/intro_inventory.html>
+
 - default inventory file: *`/etc/ansible/hosts`*, 환경 변수로 지정가능
 
         export ANSIBLE_HOSTS=~/ansible_hosts
@@ -125,7 +130,7 @@ update할 경우는 submodules도 해야 함
 - log_path 지정 가능
 - host 및 group을 inventory 에 지정 가능
 
-#### 1. Hosts and Groups
+### 1. Hosts and Groups
 - inventory file은 아래와 같은 형태를 가짐
 - 한 호스트가 동시에 여러 곳에 속할 수 있음
 - port 번호 지정 가능
@@ -134,7 +139,7 @@ update할 경우는 submodules도 해야 함
 - Ansible 만의 host alias 지정 가능(위 variable 기능 이용)
 - group of group도 가능함
 
-##### - example
+#### - example
 
 ```
 mail.example.com
@@ -154,7 +159,7 @@ jumper ansible_ssh_port=5555 ansible_ssh_host=192.168.1.50
 db-[a:f].example.com
 ```
 
-##### - connection type and user (per host basis)
+#### - connection type and user (per host basis)
 - connection type: paramiko, ssh, local(API 호출 등 local connection)
 
 ```
@@ -165,7 +170,7 @@ other1.example.com     ansible_connection=ssh        ansible_ssh_user=mpdehaan
 other2.example.com     ansible_connection=ssh        ansible_ssh_user=mdehaan
 ```
 
-#### 2. Host Variables
+### 2. Host Variables
 - 자세한 사항은 Playbook에서
 - 파일 이름은 var. name
 
@@ -175,7 +180,7 @@ host1 http_port=80 maxRequestsPerChild=808
 host2 http_port=303 maxRequestsPerChild=909
 ```
 
-#### 3. Group Variables
+### 3. Group Variables
 
 ```
 [atlanta]
@@ -187,7 +192,7 @@ ntp_server=ntp.atlanta.example.com
 proxy=proxy.atlanta.example.com
 ```
 
-#### 4. Groups of Groups, and Group Variables
+### 4. Groups of Groups, and Group Variables
 - group들의 group을 만들 수 있고 여기에 변수 할당도 가능함
 - 단 ansible-playbook에서만 사용가능(ansible 불가)
 
@@ -217,7 +222,8 @@ southwest
 northwest
 ```
 
-#### 5. Splitting Out Host and Group Specific Data
+### 5. Splitting Out Host and Group Specific Data
+
 - 변수 값들은 보통 inventory에 넣지 않고 별도 파일에 저장하는 것이 일반적임
 - 변수 파일의 형식은 YAML
 
@@ -244,7 +250,8 @@ database_server: storage.example.org
     /etc/ansible/group_vars/raleigh/cluster_settings
 ```
 
-#### 6. List of Behavioral Inventory Paramaters
+### 6. List of Behavioral Inventory Paramaters
+
 기본 ansible 변수는 아래와 같음
 
 `ansible_ssh_host`: 접속할 ssh host명 (alias 이름과 다른 경우)
@@ -269,24 +276,28 @@ database_server: storage.example.org
 
 `ansible_*_interpreter`: 위 옵션과 유사. ruby나 perl 등에도 사용가능
 
-#### 7. [dynamic inventory](http://docs.ansible.com/intro_dynamic_inventory.html)
+### 7. dynamic inventory
+<http://docs.ansible.com/intro_dynamic_inventory.html>
+
 - inventory를 외부 S/W system에 저장(e.g. CMDB software, AWS EC2/Eucalyptus, Openstack)
 - 자세한 내용은 링크 참조
 - Ansible Tower로 관리, GUI제공 가능
 
 ----------
 
-### [Pattern](http://docs.ansible.com/intro_patterns.html)
+## Pattern
+<http://docs.ansible.com/intro_patterns.html>
+
 - ansible이 주어진 conf나 IT 프로세스를 **어느 대상(hosts or groups)에 적용할지** 선택하는 방법
 - host나 group 등을 지정할 때 다양한 방법 사용 가능
     - IP나 host 명으로 직접 지정(wildcard나  range도 가능)
     - group으로 지정 가능(index, range, regex, AND/OR/EXCLUDE…)
 
-#### 1. 사용법
+### 1. 사용법
 
 `ansible <pattern_goes_here> -m <module_name> -a <arguments>`
 
-#### 2. command 예제
+### 2. command 예제
     # example
     ansible webservers -m service -a "name=httpd state=restarted"
 
@@ -296,7 +307,8 @@ database_server: storage.example.org
     # 대상 제한 - retry_hosts.txt 파일 안으로 제한
     ansible-playbook site.yml --limit @retry_hosts.txt
 
-#### 3. pattern 예제
+### 3. pattern 예제
+
 ```
 # 모든 대상 지정
 all
@@ -341,7 +353,9 @@ webservers[0:25]
 
 ----------
 
-### [Ad-Hoc command](http://docs.ansible.com/intro_adhoc.html)
+## Ad-Hoc command
+<http://docs.ansible.com/intro_adhoc.html>
+
 - 1회성으로 실행하는 명령을 뜻함
 - sudo 권한을 특정 path만 주는 방식은 호환되지 않음. Ansible Tower로 대응가능
 - 실행할 module을 선택가능(-m) : default는 '***command***'
@@ -349,7 +363,7 @@ webservers[0:25]
 
             ansible raleigh -m shell -a 'echo $TERM’
 
-#### 1. Parallelism and Shell Commands
+### 1. Parallelism and Shell Commands
     # 10 parallel forks
     $ ansible atlanta -a "/sbin/reboot" -f 10
 
@@ -359,15 +373,15 @@ webservers[0:25]
     # sudo user 변경
     $ ansible atlanta -a "/usr/bin/foo" -u username -U otheruser [--ask-sudo-pass]
 
-#### 2. File Transfer
+### 2. File Transfer
 
-##### `copy` module
+#### `copy` module
     $ ansible atlanta -m copy -a "src=/etc/hosts dest=/tmp/hosts"
 
 playbook에서는 `template` module 참고
 
 
-##### `file` module
+#### `file` module
 파일의 ownership/permission 변경 가능(copy module에도 사용가능)
 `state=directory`로 dir 생성가능, `state=absent`로 dir/file 삭제 가능
 
@@ -376,32 +390,32 @@ playbook에서는 `template` module 참고
     $ ansible webservers -m file -a "dest=/path/to/c state=absent"
 
 
-#### 3. Managing Packages: `yum`/`apt` module
+### 3. Managing Packages: `yum`/`apt` module
 
     $ ansible webservers -m yum -a "name=acme-1.5 state=present"
     $ ansible webservers -m yum -a "name=acme state=latest"
     $ ansible webservers -m yum -a "name=acme state=absent"
 
 
-#### 4. Users and Groups: `user` module
+### 4. Users and Groups: `user` module
 user 및 group 조작
 
     $ ansible all -m user -a "name=foo password=<crypted password here>"
     $ ansible all -m user -a "name=foo state=absent"
 
-#### 5. Deploying From Source Control: `git` module
+### 5. Deploying From Source Control: `git` module
 소스 관리: 소스가 변경된 경우 바로 update하고 deploy 등이 가능함
 
     $ ansible webservers -m git -a "repo=git://foo.example.org/repo.git dest=/srv/myapp version=HEAD”
 
 
-#### 6. Managing Services: `service` module
+### 6. Managing Services: `service` module
 service 관리: `state=started`, `stopped` or `restarted`
 
     $ ansible webservers -m service -a "name=httpd state=restarted”
 
 
-#### 7. Time Limited Background Operations: `asnyc_status` module
+### 7. Time Limited Background Operations: `asnyc_status` module
 
     # don't poll
     $ ansible all -B 3600 -a "/usr/bin/long_running_operation --do-stuff"
@@ -413,7 +427,7 @@ service 관리: `state=started`, `stopped` or `restarted`
     $ ansible all -B 1800 -P 60 -a "/usr/bin/long_running_operation --do-stuff"
 
 
-#### 8. Gathering Facts: `setup` module
+### 8. Gathering Facts: `setup` module
 시스템 info. 확인
 
     $ ansible all -m setup
