@@ -2,6 +2,7 @@
 layout: post
 title:  "[Ansible] Basics"
 date:   2016-09-09 12:13:43 +0900
+comments: true
 categories: Ansible
 ---
 

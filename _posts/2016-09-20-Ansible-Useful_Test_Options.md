@@ -3,6 +3,7 @@ layout: post
 title:  "[Ansible] 유용한 개발/디버깅용 cli 옵션 소개"
 date:   2016-09-20 01:45:11 +0900
 categories: Ansible
+comments: true
 ---
 
 Ansible 에는 실행 및 Playbook 개발 도중에 테스트 용도로 유용하게 쓸 수 있는 옵션들이 있다.
