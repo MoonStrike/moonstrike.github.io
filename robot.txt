@@ -1,0 +1,4 @@
+User-agent:*
+Disallow:/google7404bc7c266e2eb7.html
+Disallow:/naver501c1af586997e628133c9fe655dceb6.html
+Sitemap:http://moonstrike.github.io/sitemap.xml

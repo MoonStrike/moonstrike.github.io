@@ -3,6 +3,8 @@ title: Set Sail for the Moon
 email: moonstrike1024@gmail.com
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://moonstrike.github.io" # the base hostname & protocol for your site
+exclude: 
+  - sbin/
 
 # Sidebar settings
 description: >
