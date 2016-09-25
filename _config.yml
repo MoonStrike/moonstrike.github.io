@@ -27,7 +27,6 @@ gems:
   - jemoji
   - jekyll-redirect-from
   - jekyll-paginate
-  - jekyll-seotag
   - jekyll-gist
   - jekyll-coffeescript
   - jekyll-feed
