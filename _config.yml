@@ -31,3 +31,4 @@ gems:
   - jekyll-gist
   - jekyll-coffeescript
   - jekyll-feed
+paginate: 5
