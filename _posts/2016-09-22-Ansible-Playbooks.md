@@ -40,15 +40,15 @@ ansible-playbook playbook.yml --list-hosts
     max_clients: 200
   # user account
   remote_user: yourname
-  sudo: yes
+  become: yes
   # task list
   tasks:
     - name: disable selinux
       command: /sbin/setenforce 0
     - name: ensure apache is at the latest version
       yum: pkg=httpd state=latest
-      sudo: yes
-      sudo_user: root
+      become: yes
+      become_user: root
     - name: write the apache config file
       template: src=/srv/httpd.j2 dest=/etc/httpd.conf
   # handlers
@@ -64,7 +64,7 @@ ansible-playbook playbook.yml --list-hosts
 
 #### Hosts and Users
 - 위 예제 참고
-- sudo password 는 ansible-playbook에 `--ask-sudo-pass` 옵션으로 지정(not in playbook)
+- sudo password 는 ansible-playbook에 `--ask-become-pass` 옵션으로 지정(not in playbook)
 
 #### Tasks list
 - 각 play에는 tasks list 포함
@@ -345,6 +345,7 @@ dependencies:
 ```
 
 실행 순서는 아래와 같다.
+
 ```
 tire(n=1)
 brake(n=1)
