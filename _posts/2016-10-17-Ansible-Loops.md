@@ -136,9 +136,9 @@ tasks:
         - /playbooks/files/fooapp/*
 ```
 
-## 6. Looping over Parallel Sets of Data - `with_parallel`
+## 6. Looping over Parallel Sets of Data - `with_together`
 
-두 list를 짝지어서 loop를 돌리고 싶은 경우 `with_parallel`을 사용함.
+두 list를 짝지어서 loop를 돌리고 싶은 경우 `with_together`을 사용함.
 
 ```
 ---
