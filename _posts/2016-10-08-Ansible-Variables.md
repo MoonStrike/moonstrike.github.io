@@ -30,7 +30,6 @@ foo_port
 foo5
 
 # NOT OK
-foo_port
 foo port
 foo.port
 12
